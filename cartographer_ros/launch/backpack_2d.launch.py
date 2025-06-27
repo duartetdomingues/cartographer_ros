@@ -53,8 +53,10 @@ def generate_launch_description():
         arguments = [
             '-configuration_directory', FindPackageShare('cartographer_ros').find('cartographer_ros') + '/configuration_files',
             '-configuration_basename', 'backpack_2d.lua'],
-        remappings = [
-            ('echoes', 'horizontal_laser_2d')],
+        remappings = [('scan', '/scan'),
+                      ('imu', '/imu/data'),
+                      ('odom', '/odometry/filtered') 
+                      ],
         output = 'screen'
         )
 
