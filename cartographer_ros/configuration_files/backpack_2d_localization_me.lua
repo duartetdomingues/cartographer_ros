@@ -22,8 +22,7 @@ options = {
   tracking_frame = "base_link",
   published_frame = "base_link",
   odom_frame = "odom",
-  provide_odom_frame = true,
-  publish_frame_projected_to_2d = false,
+  provide_odom_frame = false,
   use_pose_extrapolator = true,
   publish_tracked_pose = true,
   use_odometry = true,
@@ -45,11 +44,45 @@ options = {
   fixed_frame_pose_sampling_ratio = 1.,
   imu_sampling_ratio = 1.,
   landmarks_sampling_ratio = 1.,
+
+  publish_to_tf = true,
+  publish_frame_projected_to_2d = true,
 }
- 
 MAP_BUILDER.use_trajectory_builder_2d = true
-POSE_GRAPH.constraint_builder.log_matches = true
+MAP_BUILDER.use_trajectory_builder_3d = false
+
 TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 7
---TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 2
+TRAJECTORY_BUILDER_2D.submaps.grid_options_2d.resolution = 0.02
+
+TRAJECTORY_BUILDER.pure_localization_trimmer = {
+  max_submaps_to_keep = 2,
+}
+POSE_GRAPH.optimize_every_n_nodes = 20
+POSE_GRAPH.global_sampling_ratio = 0.05
+POSE_GRAPH.constraint_builder.sampling_ratio = 0.05
+
+
+MAP_BUILDER.num_background_threads = 4.0
+
+TRAJECTORY_BUILDER_2D.use_imu_data = true
+
+--TRAJECTORY_BUILDER_2D.pose_extrapolator.imu_based.gravity_constant = 0.0;
+-- TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+
+--[[ 
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.ceres_solver_options.num_threads = 3
+
+
+
+TRAJECTORY_BUILDER_2D.submaps.num_range_data = 90 ]]
+
+
+
+
+--TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 0.2 * TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight
+
+--POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0
+--POSE_GRAPH.optimization_problem.odometry_translation_weight = 0
+
 
 return options

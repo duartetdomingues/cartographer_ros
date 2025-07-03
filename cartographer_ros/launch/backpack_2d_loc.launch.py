@@ -26,6 +26,10 @@ import os
 
 def generate_launch_description():
 
+    ## ***** Environment variables *****
+    home = os.environ['HOME']
+
+    
     ## ***** Launch arguments *****
     use_sim_time_arg = DeclareLaunchArgument('use_sim_time', default_value = 'False')
 
@@ -53,7 +57,10 @@ def generate_launch_description():
         arguments = [
             '--collect_metrics',
             '-configuration_directory', FindPackageShare('cartographer_ros').find('cartographer_ros') + '/configuration_files',
-            '-configuration_basename', 'backpack_2d_mapping_me.lua'],
+            '-configuration_basename', 'backpack_2d_localization_me.lua',
+            '-load_state_filename', f'{home}/f1tenth/maps/map_2025-07-03_15-58-31/map_output.pbstream'
+            ],
+        
         remappings = [('scan', '/scan'),
                       ('imu', '/imu_base_link'),
                       ('odom', '/odometry/filtered') 

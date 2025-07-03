@@ -49,7 +49,7 @@ TRAJECTORY_BUILDER_3D.max_range = 20.
 TRAJECTORY_BUILDER_3D.submaps.num_range_data = 40.
 
 MAP_BUILDER.use_trajectory_builder_3d = true
-MAP_BUILDER.num_background_threads = 7
+MAP_BUILDER.num_background_threads = 6
 POSE_GRAPH.optimization_problem.huber_scale = 5e2
 POSE_GRAPH.optimize_every_n_nodes = 40
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
