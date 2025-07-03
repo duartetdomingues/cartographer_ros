@@ -51,10 +51,11 @@ def generate_launch_description():
         executable = 'cartographer_node',
         parameters = [{'use_sim_time': LaunchConfiguration('use_sim_time')}],
         arguments = [
+            '--collect_metrics',
             '-configuration_directory', FindPackageShare('cartographer_ros').find('cartographer_ros') + '/configuration_files',
             '-configuration_basename', 'backpack_2d.lua'],
         remappings = [('scan', '/scan'),
-                      ('imu', '/imu/data'),
+                      ('imu', '/imu_base_link'),
                       ('odom', '/odometry/filtered') 
                       ],
         output = 'screen'
