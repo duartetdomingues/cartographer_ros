@@ -51,7 +51,7 @@ options = {
 MAP_BUILDER.use_trajectory_builder_2d = true
 MAP_BUILDER.use_trajectory_builder_3d = false
 
-TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 7
+TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
 TRAJECTORY_BUILDER_2D.submaps.grid_options_2d.resolution = 0.02
 
 TRAJECTORY_BUILDER.pure_localization_trimmer = {
@@ -60,6 +60,13 @@ TRAJECTORY_BUILDER.pure_localization_trimmer = {
 POSE_GRAPH.optimize_every_n_nodes = 20
 POSE_GRAPH.global_sampling_ratio = 0.05
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.05
+
+TRAJECTORY_BUILDER_2D.motion_filter = {
+  max_time_seconds = 0.5,
+  max_distance_meters = 0.1, 
+  max_angle_radians = math.rad(0.5)
+}
+
 
 
 MAP_BUILDER.num_background_threads = 4.0
