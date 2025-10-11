@@ -53,12 +53,14 @@ def generate_launch_description():
     cartographer_node = Node(
         package = 'cartographer_ros',
         executable = 'cartographer_node',
-        parameters = [{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        parameters = [{'use_sim_time': LaunchConfiguration('use_sim_time')},
+                      {'use_pure_localization': True},
+                    {'start_trajectory_with_default_topics': True}], # ✅ inicia automaticamente
         arguments = [
             '--collect_metrics',
             '-configuration_directory', FindPackageShare('cartographer_ros').find('cartographer_ros') + '/configuration_files',
-            '-configuration_basename', 'backpack_2d_localization_forza.lua',
-            '-load_state_filename', f'{home}/f1tenth/maps/map_2025-07-15_14-19-22/map_output.pbstream'
+            '-configuration_basename', 'backpack_2d_localization_me.lua',
+            '-load_state_filename', f'{home}/f1tenth/maps/map_2025-10-11_12-41-37/map_output.pbstream'
             ],
         
         remappings = [('scan', '/scan'),
